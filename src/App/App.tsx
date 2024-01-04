@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { SegmentCanvas } from '../SegmentCanvas';
+import { SegmentCanvas } from '../SegmentCanvas/SegmentCanvas';
+import { SegmentForm } from '../SegmentForm/SegmentForm';
 import { Segment, generateRandomSegment, Point } from '../utils';
 
 const App = () => {
@@ -41,20 +42,18 @@ const App = () => {
     setIntersect(checkIntersection(segments[0], segments[1]));
   }, [segments]);
 
+  const handleNewSegments = (segment1: Segment, segment2: Segment) => {
+    setSegments([segment1, segment2]);
+    setIntersect(checkIntersection(segment1, segment2));
+  };
   return (
     <div>
+      <SegmentForm onNewSegment={handleNewSegments} />
       {intersect ? (
         <p>Odcinki się przecinają</p>
       ) : (
         <p>Odcinki się nie przecinają</p>
       )}
-      <button
-        onClick={() =>
-          setSegments([generateRandomSegment(), generateRandomSegment()])
-        }
-      >
-        Generuj losowe odcinki
-      </button>
       <SegmentCanvas segments={segments} />
     </div>
   );

@@ -9,8 +9,8 @@ export interface Segment {
 }
 
 export const generateRandomPoint = (): Point => ({
-  x: Math.floor(Math.random() * window.innerWidth),
-  y: Math.floor(Math.random() * window.innerHeight),
+  x: Math.floor(Math.random() * 10),
+  y: Math.floor(Math.random() * 10),
 });
 
 export const generateRandomSegment = (): Segment => ({
