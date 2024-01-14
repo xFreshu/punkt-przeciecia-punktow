@@ -34,9 +34,7 @@ const App = () => {
     if (o1 === 0 && onSegment(seg1.start, seg2.start, seg1.end)) return true;
     if (o2 === 0 && onSegment(seg1.start, seg2.end, seg1.end)) return true;
     if (o3 === 0 && onSegment(seg2.start, seg1.start, seg2.end)) return true;
-    if (o4 === 0 && onSegment(seg2.start, seg1.end, seg2.end)) return true;
-
-    return false;
+    return o4 === 0 && onSegment(seg2.start, seg1.end, seg2.end);
   };
 
   useEffect(() => {
