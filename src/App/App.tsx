@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { SegmentCanvas } from '../SegmentCanvas/SegmentCanvas';
 import { SegmentForm } from '../SegmentForm/SegmentForm';
 import { Segment, generateRandomSegment, Point } from '../utils';
+import { CenteredText } from './App.styled';
 
 const App = () => {
   const [segments, setSegments] = useState<Segment[]>([
@@ -50,9 +51,9 @@ const App = () => {
     <div>
       <SegmentForm onNewSegment={handleNewSegments} />
       {intersect ? (
-        <p>Odcinki się przecinają</p>
+        <CenteredText>Odcinki się przecinają</CenteredText>
       ) : (
-        <p>Odcinki się nie przecinają</p>
+        <CenteredText>Odcinki się nie przecinają</CenteredText>
       )}
       <SegmentCanvas segments={segments} />
     </div>

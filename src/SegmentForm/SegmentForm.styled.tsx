@@ -35,3 +35,9 @@ export const SubmitButton = styled.button`
     background-color: #0056b3;
   }
 `;
+
+export const ButtonsContainer = styled.div`
+  display: flex;
+  justify-content: center; // Wyśrodkowanie przycisków w poziomie
+  gap: 10px; // Odstęp między przyciskami
+`;

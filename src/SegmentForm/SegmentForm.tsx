@@ -5,6 +5,7 @@ import {
   SegmentContainer,
   Input,
   SubmitButton,
+  ButtonsContainer,
 } from './SegmentForm.styled';
 
 interface SegmentFormProps {
@@ -119,10 +120,12 @@ export const SegmentForm: React.FC<SegmentFormProps> = ({ onNewSegment }) => {
           onChange={(e) => handleSegmentChange(e, segment2, setSegment2, 'end')}
         />
       </SegmentContainer>
-      <SubmitButton type="submit">Sprawdź przecięcia</SubmitButton>
-      <button type="button" onClick={fillWithRandomSegments}>
-        Wypełnij losowymi liczbami
-      </button>
+      <ButtonsContainer>
+        <SubmitButton type="button" onClick={fillWithRandomSegments}>
+          Wypełnij losowymi liczbami
+        </SubmitButton>
+        <SubmitButton type="submit">Sprawdź przecięcia</SubmitButton>
+      </ButtonsContainer>
     </Form>
   );
 };
