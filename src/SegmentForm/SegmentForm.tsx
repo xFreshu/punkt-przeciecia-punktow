@@ -52,10 +52,12 @@ export const SegmentForm: React.FC<SegmentFormProps> = ({ onNewSegment }) => {
     <Form onSubmit={handleSubmit}>
       <SegmentContainer>
         <h3>Odcinek 1</h3>
-        Start x:{' '}
+        Start x:
         <Input
           type="number"
           name="x"
+          min="-20"
+          max="20"
           value={segment1.start.x}
           onChange={(e) =>
             handleSegmentChange(e, segment1, setSegment1, 'start')
@@ -65,57 +67,71 @@ export const SegmentForm: React.FC<SegmentFormProps> = ({ onNewSegment }) => {
         <Input
           type="number"
           name="y"
+          min="-20"
+          max="20"
           value={segment1.start.y}
           onChange={(e) =>
             handleSegmentChange(e, segment1, setSegment1, 'start')
           }
         />
-        End x:{' '}
+        End x:
         <Input
           type="number"
           name="x"
+          min="-20"
+          max="20"
           value={segment1.end.x}
           onChange={(e) => handleSegmentChange(e, segment1, setSegment1, 'end')}
         />
-        End y:{' '}
+        End y:
         <Input
           type="number"
           name="y"
+          min="-20"
+          max="20"
           value={segment1.end.y}
           onChange={(e) => handleSegmentChange(e, segment1, setSegment1, 'end')}
         />
       </SegmentContainer>
       <SegmentContainer>
         <h3>Odcinek 2</h3>
-        Start x:{' '}
+        Start x:
         <Input
           type="number"
           name="x"
+          min="-20"
+          max="20"
           value={segment2.start.x}
           onChange={(e) =>
             handleSegmentChange(e, segment2, setSegment2, 'start')
           }
         />
-        Start y:{' '}
+        Start y:
         <Input
           type="number"
           name="y"
+          min="-20"
+          max="20"
           value={segment2.start.y}
           onChange={(e) =>
             handleSegmentChange(e, segment2, setSegment2, 'start')
           }
         />
-        End x:{' '}
+        End x:
         <Input
           type="number"
           name="x"
+          min="-20"
+          max="20"
           value={segment2.end.x}
           onChange={(e) => handleSegmentChange(e, segment2, setSegment2, 'end')}
         />
-        End y:{' '}
+        End y:
         <Input
           type="number"
           name="y"
+          min="-20"
+          max="20"
           value={segment2.end.y}
           onChange={(e) => handleSegmentChange(e, segment2, setSegment2, 'end')}
         />

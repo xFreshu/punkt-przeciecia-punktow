@@ -10,7 +10,7 @@ export interface Segment {
 
 export const generateRandomPoint = (): Point => {
   const range = 20;
-  const offset = 10;
+  const offset = 20;
   return {
     x: Math.floor(Math.random() * range) - offset,
     y: Math.floor(Math.random() * range) - offset,
