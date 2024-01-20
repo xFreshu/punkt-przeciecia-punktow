@@ -52,4 +52,4 @@ describe('SegmentForm', () => {
   });
 });
 
-console.log('SegmentForm tests passed!');
+console.log('SegmentForm tests passed!!');
