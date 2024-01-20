@@ -51,3 +51,5 @@ describe('SegmentForm', () => {
     expect(startXInputSegment2.value).not.toBe('0');
   });
 });
+
+console.log('SegmentForm tests passed!');
