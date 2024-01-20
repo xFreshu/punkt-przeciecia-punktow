@@ -8,7 +8,7 @@ import {
   ButtonsContainer,
 } from './SegmentForm.styled';
 
-interface SegmentFormProps {
+export interface SegmentFormProps {
   onNewSegment: (segment1: Segment, segment2: Segment) => void;
 }
 
@@ -52,8 +52,10 @@ export const SegmentForm: React.FC<SegmentFormProps> = ({ onNewSegment }) => {
     <Form onSubmit={handleSubmit}>
       <SegmentContainer>
         <h3>Odcinek 1</h3>
-        Start x:
+        <label htmlFor="segment1-start-x">Start x:</label>
         <Input
+          id="segment1-start-x"
+          data-testid="segment1-start-x"
           type="number"
           name="x"
           min="-20"
@@ -63,8 +65,10 @@ export const SegmentForm: React.FC<SegmentFormProps> = ({ onNewSegment }) => {
             handleSegmentChange(e, segment1, setSegment1, 'start')
           }
         />
-        Start y:
+        <label htmlFor="segment1-start-y">Start y:</label>
         <Input
+          id="segment1-start-y"
+          data-testid="segment1-start-y"
           type="number"
           name="y"
           min="-20"
@@ -74,8 +78,10 @@ export const SegmentForm: React.FC<SegmentFormProps> = ({ onNewSegment }) => {
             handleSegmentChange(e, segment1, setSegment1, 'start')
           }
         />
-        End x:
+        <label htmlFor="segment1-end-x">End x:</label>
         <Input
+          id="segment1-end-x"
+          data-testid="segment1-end-x"
           type="number"
           name="x"
           min="-20"
@@ -83,8 +89,10 @@ export const SegmentForm: React.FC<SegmentFormProps> = ({ onNewSegment }) => {
           value={segment1.end.x}
           onChange={(e) => handleSegmentChange(e, segment1, setSegment1, 'end')}
         />
-        End y:
+        <label htmlFor="segment1-end-y">End y:</label>
         <Input
+          id="segment1-end-y"
+          data-testid="segment1-end-y"
           type="number"
           name="y"
           min="-20"
@@ -95,8 +103,10 @@ export const SegmentForm: React.FC<SegmentFormProps> = ({ onNewSegment }) => {
       </SegmentContainer>
       <SegmentContainer>
         <h3>Odcinek 2</h3>
-        Start x:
+        <label htmlFor="segment2-start-x">Start x:</label>
         <Input
+          id="segment2-start-x"
+          data-testid="segment2-start-x"
           type="number"
           name="x"
           min="-20"
@@ -106,8 +116,10 @@ export const SegmentForm: React.FC<SegmentFormProps> = ({ onNewSegment }) => {
             handleSegmentChange(e, segment2, setSegment2, 'start')
           }
         />
-        Start y:
+        <label htmlFor="segment2-start-y">Start y:</label>
         <Input
+          id="segment2-start-y"
+          data-testid="segment2-start-y"
           type="number"
           name="y"
           min="-20"
@@ -117,8 +129,10 @@ export const SegmentForm: React.FC<SegmentFormProps> = ({ onNewSegment }) => {
             handleSegmentChange(e, segment2, setSegment2, 'start')
           }
         />
-        End x:
+        <label htmlFor="segment2-end-x">End x:</label>
         <Input
+          id="segment2-end-x"
+          data-testid="segment2-end-x"
           type="number"
           name="x"
           min="-20"
@@ -126,8 +140,10 @@ export const SegmentForm: React.FC<SegmentFormProps> = ({ onNewSegment }) => {
           value={segment2.end.x}
           onChange={(e) => handleSegmentChange(e, segment2, setSegment2, 'end')}
         />
-        End y:
+        <label htmlFor="segment2-end-y">End y:</label>
         <Input
+          id="segment2-end-y"
+          data-testid="segment2-end-y"
           type="number"
           name="y"
           min="-20"
