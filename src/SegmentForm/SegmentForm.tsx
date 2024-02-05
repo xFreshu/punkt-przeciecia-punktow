@@ -59,17 +59,99 @@ export const SegmentForm: React.FC<SegmentFormProps> = ({ onNewSegment }) => {
       {/* Kontener dla wprowadzania danych pierwszego segmentu */}
       <SegmentContainer>
         <h3>Odcinek 1</h3>
-        {/* Inputy dla pierwszego segmentu (start x, start y, end x, end y) */}
-        {/* ... kod inputów ... */}
+        <label htmlFor="startX1">Start X</label>
+        <Input
+          id="startX1"
+          name="x"
+          type="number"
+          min="-20"
+          max="20"
+          value={segment1.start.x}
+          onChange={(e) =>
+            handleSegmentChange(e, segment1, setSegment1, 'start')
+          }
+        />
+        <label htmlFor="startY1">Start Y</label>
+        <Input
+          id="startY1"
+          name="y"
+          type="number"
+          min="-20"
+          max="20"
+          value={segment1.start.y}
+          onChange={(e) =>
+            handleSegmentChange(e, segment1, setSegment1, 'start')
+          }
+        />
+        <label htmlFor="endX1">End X</label>
+        <Input
+          id="endX1"
+          name="x"
+          type="number"
+          min="-20"
+          max="20"
+          value={segment1.end.x}
+          onChange={(e) => handleSegmentChange(e, segment1, setSegment1, 'end')}
+        />
+        <label htmlFor="endY1">End Y</label>
+        <Input
+          id="endY1"
+          name="y"
+          type="number"
+          min="-20"
+          max="20"
+          value={segment1.end.y}
+          onChange={(e) => handleSegmentChange(e, segment1, setSegment1, 'end')}
+        />
       </SegmentContainer>
-
       {/* Kontener dla wprowadzania danych drugiego segmentu */}
       <SegmentContainer>
         <h3>Odcinek 2</h3>
-        {/* Inputy dla drugiego segmentu (start x, start y, end x, end y) */}
-        {/* ... kod inputów ... */}
+        <label htmlFor="startX2">Start X</label>
+        <Input
+          id="startX2"
+          name="x"
+          type="number"
+          min="-20"
+          max="20"
+          value={segment2.start.x}
+          onChange={(e) =>
+            handleSegmentChange(e, segment2, setSegment2, 'start')
+          }
+        />
+        <label htmlFor="startY2">Start Y</label>
+        <Input
+          id="startY2"
+          name="y"
+          type="number"
+          min="-20"
+          max="20"
+          value={segment2.start.y}
+          onChange={(e) =>
+            handleSegmentChange(e, segment2, setSegment2, 'start')
+          }
+        />
+        <label htmlFor="endX2">End X</label>
+        <Input
+          id="endX2"
+          name="x"
+          type="number"
+          min="-20"
+          max="20"
+          value={segment2.end.x}
+          onChange={(e) => handleSegmentChange(e, segment2, setSegment2, 'end')}
+        />
+        <label htmlFor="endY2">End Y</label>
+        <Input
+          id="endY2"
+          name="y"
+          type="number"
+          min="-20"
+          max="20"
+          value={segment2.end.y}
+          onChange={(e) => handleSegmentChange(e, segment2, setSegment2, 'end')}
+        />
       </SegmentContainer>
-
       {/* Przyciski do generowania losowych segmentów i do wysyłania formularza */}
       <ButtonsContainer>
         <SubmitButton type="button" onClick={fillWithRandomSegments}>

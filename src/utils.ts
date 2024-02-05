@@ -22,7 +22,7 @@ export const generateRandomSegment = (): Segment => ({
   end: generateRandomPoint(),
 });
 
-export const checkIntersection = (seg1: Segment, seg2: Segment): boolean => {
+/* export const checkIntersection = (seg1: Segment, seg2: Segment): boolean => {
   // Definicja pomocnicza do sprawdzania, czy punkt leży na odcinku
   const onSegment = (p: Point, q: Point, r: Point): boolean =>
     q.x <= Math.max(p.x, r.x) &&
@@ -49,4 +49,24 @@ export const checkIntersection = (seg1: Segment, seg2: Segment): boolean => {
   if (o2 === 0 && onSegment(seg1.start, seg2.end, seg1.end)) return true;
   if (o3 === 0 && onSegment(seg2.start, seg1.start, seg2.end)) return true;
   return o4 === 0 && onSegment(seg2.start, seg1.end, seg2.end);
+}; */
+
+export const checkIntersection = (seg1: Segment, seg2: Segment) => {
+  const crossProduct = (v1: any, v2: any) => v1.x * v2.y - v1.y * v2.x;
+
+  const subtract = (p1: any, p2: any) => ({ x: p1.x - p2.x, y: p1.y - p2.y });
+
+  const r = subtract(seg1.end, seg1.start);
+  const s = subtract(seg2.end, seg2.start);
+  const uNumerator = crossProduct(subtract(seg2.start, seg1.start), r);
+  const denominator = crossProduct(r, s);
+
+  if (denominator === 0) {
+    return uNumerator === 0;
+  }
+
+  const u = uNumerator / denominator;
+  const t = crossProduct(subtract(seg2.start, seg1.start), s) / denominator;
+
+  return t >= 0 && t <= 1 && u >= 0 && u <= 1;
 };
