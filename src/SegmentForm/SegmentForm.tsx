@@ -8,14 +8,11 @@ import {
   ButtonsContainer,
 } from './SegmentForm.styled';
 
-// Typ propsów dla SegmentForm
 export interface SegmentFormProps {
   onNewSegment: (segment1: Segment, segment2: Segment) => void;
 }
 
-// Komponent formularza do wprowadzania danych segmentów
 export const SegmentForm: React.FC<SegmentFormProps> = ({ onNewSegment }) => {
-  // Stan dla przechowywania danych pierwszego i drugiego segmentu
   const [segment1, setSegment1] = useState<Segment>({
     start: { x: 0, y: 0 },
     end: { x: 0, y: 0 },
@@ -24,20 +21,8 @@ export const SegmentForm: React.FC<SegmentFormProps> = ({ onNewSegment }) => {
     start: { x: 0, y: 0 },
     end: { x: 0, y: 0 },
   });
+  const [error, setError] = useState('');
 
-  // Obsługa wysłania formularza
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    onNewSegment(segment1, segment2);
-  };
-
-  // Funkcja do wypełnienia segmentów losowymi wartościami
-  const fillWithRandomSegments = () => {
-    setSegment1(generateRandomSegment());
-    setSegment2(generateRandomSegment());
-  };
-
-  // Funkcja do obsługi zmiany wartości w inputach
   const handleSegmentChange = (
     e: React.ChangeEvent<HTMLInputElement>,
     segment: Segment,
@@ -45,13 +30,39 @@ export const SegmentForm: React.FC<SegmentFormProps> = ({ onNewSegment }) => {
     point: 'start' | 'end'
   ) => {
     const { name, value } = e.target;
+    const parsedValue = value === '' ? 0 : parseInt(value, 10);
+
     setSegment({
       ...segment,
       [point]: {
         ...segment[point],
-        [name]: parseInt(value, 10),
+        [name]: parsedValue,
       },
     });
+  };
+
+  const areAllValuesZero = (segment: Segment) => {
+    return (
+      Object.values(segment.start).every((v) => v === 0) &&
+      Object.values(segment.end).every((v) => v === 0)
+    );
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (areAllValuesZero(segment1) && areAllValuesZero(segment2)) {
+      setError('Nie można wygenerować odcinków z samych zer.');
+      return;
+    }
+
+    setError('');
+    onNewSegment(segment1, segment2);
+  };
+
+  const fillWithRandomSegments = () => {
+    setSegment1(generateRandomSegment());
+    setSegment2(generateRandomSegment());
   };
 
   return (
@@ -159,6 +170,7 @@ export const SegmentForm: React.FC<SegmentFormProps> = ({ onNewSegment }) => {
         </SubmitButton>
         <SubmitButton type="submit">Sprawdź przecięcia</SubmitButton>
       </ButtonsContainer>
+      {error && <p style={{ color: 'red' }}>{error}</p>}
     </Form>
   );
 };

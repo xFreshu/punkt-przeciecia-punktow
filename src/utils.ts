@@ -8,6 +8,12 @@ export interface Segment {
   end: Point;
 }
 
+export interface IntersectionResult {
+  intersect: boolean;
+  point?: Point;
+  segmentIndex?: number;
+}
+
 export const generateRandomPoint = (): Point => {
   const range = 40; // Zakres od 0 do 39
   const offset = 20; // Przesunięcie o 20, co daje zakres od -20 do 19
@@ -22,51 +28,57 @@ export const generateRandomSegment = (): Segment => ({
   end: generateRandomPoint(),
 });
 
-/* export const checkIntersection = (seg1: Segment, seg2: Segment): boolean => {
-  // Definicja pomocnicza do sprawdzania, czy punkt leży na odcinku
-  const onSegment = (p: Point, q: Point, r: Point): boolean =>
-    q.x <= Math.max(p.x, r.x) &&
-    q.x >= Math.min(p.x, r.x) &&
-    q.y <= Math.max(p.y, r.y) &&
-    q.y >= Math.min(p.y, r.y);
-
-  // Definicja pomocnicza do obliczania orientacji trzech punktów
-  const orientation = (p: Point, q: Point, r: Point): number => {
-    const val = (q.y - p.y) * (r.x - q.x) - (q.x - p.x) * (r.y - q.y);
-    if (val === 0) return 0;
-    return val > 0 ? 1 : 2;
-  };
-
-  // Obliczanie orientacji dla różnych kombinacji punktów końcowych segmentów
-  const o1 = orientation(seg1.start, seg1.end, seg2.start);
-  const o2 = orientation(seg1.start, seg1.end, seg2.end);
-  const o3 = orientation(seg2.start, seg2.end, seg1.start);
-  const o4 = orientation(seg2.start, seg2.end, seg1.end);
-
-  // Sprawdzenie warunków przecięcia się odcinków
-  if (o1 !== o2 && o3 !== o4) return true;
-  if (o1 === 0 && onSegment(seg1.start, seg2.start, seg1.end)) return true;
-  if (o2 === 0 && onSegment(seg1.start, seg2.end, seg1.end)) return true;
-  if (o3 === 0 && onSegment(seg2.start, seg1.start, seg2.end)) return true;
-  return o4 === 0 && onSegment(seg2.start, seg1.end, seg2.end);
-}; */
-
+/**
+ * Sprawdza, czy dwa odcinki na płaszczyźnie się przecinają.
+ * @param seg1 Pierwszy odcinek, reprezentowany jako obiekt Segment.
+ * @param seg2 Drugi odcinek, reprezentowany jako obiekt Segment.
+ * @returns Wartość logiczna wskazująca, czy odcinki się przecinają.
+ * Jeżeli odcinki przecinają się, to program określa zbiór, na którym następuje przecięcie:
+ * - punkt i jego współrzędne, albo
+ * - odcinek i współrzędne jego końców.
+ */
 export const checkIntersection = (seg1: Segment, seg2: Segment) => {
-  const crossProduct = (v1: any, v2: any) => v1.x * v2.y - v1.y * v2.x;
+  // Funkcja obliczająca iloczyn wektorowy dwóch punktów.
+  const crossProduct = (v1: Point, v2: Point) => v1.x * v2.y - v1.y * v2.x;
 
-  const subtract = (p1: any, p2: any) => ({ x: p1.x - p2.x, y: p1.y - p2.y });
+  // Funkcja obliczająca różnicę dwóch punktów.
+  const subtract = (p1: Point, p2: Point) => ({
+    x: p1.x - p2.x,
+    y: p1.y - p2.y,
+  });
 
+  // Obliczenie wektora reprezentującego pierwszy odcinek.
   const r = subtract(seg1.end, seg1.start);
+
+  // Obliczenie wektora reprezentującego drugi odcinek.
   const s = subtract(seg2.end, seg2.start);
+
+  // Obliczenie iloczynu wektorowego (numeratory).
   const uNumerator = crossProduct(subtract(seg2.start, seg1.start), r);
+
+  // Obliczenie iloczynu wektorowego (mianownik).
   const denominator = crossProduct(r, s);
 
+  // Sprawdzenie, czy mianownik nie jest równy zero (czy odcinki są równoległe).
   if (denominator === 0) {
+    // Jeśli mianownik jest równy zero, sprawdź, czy numeratory są również równe zero.
     return uNumerator === 0;
   }
 
+  // Obliczenie parametru u.
   const u = uNumerator / denominator;
+
+  // Obliczenie parametru t.
   const t = crossProduct(subtract(seg2.start, seg1.start), s) / denominator;
 
-  return t >= 0 && t <= 1 && u >= 0 && u <= 1;
+  // Sprawdzenie, czy punkt przecięcia leży na obu odcinkach.
+  if (t >= 0 && t <= 1 && u >= 0 && u <= 1) {
+    const intersectionPoint = {
+      x: seg1.start.x + t * (seg1.end.x - seg1.start.x),
+      y: seg1.start.y + t * (seg1.end.y - seg1.start.y),
+    };
+    return { intersect: true, point: intersectionPoint, segmentIndex: 1 };
+  } else {
+    return { intersect: false };
+  }
 };

@@ -1,23 +1,17 @@
-// SegmentCanvas.tsx
 import React from 'react';
-import { Stage, Layer, Line } from 'react-konva'; // Importowanie komponentów z react-konva do rysowania na canvasie
-import { Segment } from '../utils'; // Import typu Segment
-import { StyledCanvas } from './SegmentCanvas.styled'; // Import stylowanego komponentu Canvas
+import { Stage, Layer, Line } from 'react-konva';
+import { Segment } from '../utils';
+import { StyledCanvas } from './SegmentCanvas.styled';
 
-// Definicja interfejsu dla propsów komponentu SegmentCanvas
 interface SegmentCanvasProps {
-  segments: Segment[]; // Tablica segmentów do wyświetlenia
+  segments: Segment[];
 }
 
-// Komponent funkcyjny SegmentCanvas, przyjmujący segmenty jako props
 export const SegmentCanvas: React.FC<SegmentCanvasProps> = ({ segments }) => {
-  // Ustawienie wymiarów canvasa
   const canvasWidth = 800;
   const canvasHeight = 600;
-  // Obliczenie centrum canvasa
   const centerX = canvasWidth / 2;
   const centerY = canvasHeight / 2;
-  // Skala używana do transformacji punktów
   const scale = 10;
 
   // Funkcja do transformacji punktów na współrzędne canvasa
@@ -39,13 +33,13 @@ export const SegmentCanvas: React.FC<SegmentCanvasProps> = ({ segments }) => {
               segment.end.y
             );
 
-            // Rysowanie linii dla każdego segmentu
+            // Rysowanie linii dla każdego odcinka
             return (
               <Line
-                key={i} // Klucz reaktowy dla listy elementów
-                points={[startX, startY, endX, endY]} // Punkty linii
-                stroke="black" // Kolor linii
-                strokeWidth={2} // Grubość linii
+                key={i}
+                points={[startX, startY, endX, endY]}
+                stroke="black"
+                strokeWidth={2}
               />
             );
           })}
