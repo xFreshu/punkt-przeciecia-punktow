@@ -16,21 +16,29 @@ const App = () => {
     const result: any = checkIntersection(segments[0], segments[1]);
 
     if (result.intersect) {
-      const message =
-        `Odcinki: ${formatSegment(segments[0])} i ${formatSegment(
-          segments[1]
-        )} ` +
-        `się przecinają w punkcie: (${result.point?.x.toFixed(
-          2
-        )}, ${result.point?.y.toFixed(2)}) 
-        `;
-
+      let message;
+      if (result.point) {
+        // Przecięcie w jednym punkcie
+        message =
+          `Odcinki: ${formatSegment(segments[0])} i ${formatSegment(
+            segments[1]
+          )} ` +
+          `się przecinają w punkcie: (${result.point.x.toFixed(
+            2
+          )}, ${result.point.y.toFixed(2)})`;
+      } else {
+        // Przecięcie na fragmencie (odcinki leżą na sobie)
+        // Używam segmentów bezpośrednio, ponieważ wynik nie zawiera konkretnego punktu przecięcia
+        message =
+          `Odcinki: ${formatSegment(segments[0])} i ${formatSegment(
+            segments[1]
+          )} ` + `leżą na sobie.`;
+      }
       showSuccessToast(message);
     } else {
-      const message =
-        `Odcinki: ${formatSegment(segments[0])} i ${formatSegment(
-          segments[1]
-        )} ` + `się nie przecinają`;
+      const message = `Odcinki: ${formatSegment(segments[0])} i ${formatSegment(
+        segments[1]
+      )} się nie przecinają`;
 
       showErrorToast(message);
     }

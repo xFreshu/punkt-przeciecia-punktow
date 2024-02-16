@@ -12,7 +12,7 @@ export const SegmentCanvas: React.FC<SegmentCanvasProps> = ({ segments }) => {
   const canvasHeight = 600;
   const centerX = canvasWidth / 2;
   const centerY = canvasHeight / 2;
-  const scale = 10;
+  const scale = 20;
 
   // Funkcja do transformacji punktów na współrzędne canvasa
   const transformPoint = (x: number, y: number) => ({

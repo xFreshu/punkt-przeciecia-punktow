@@ -75,8 +75,8 @@ export const SegmentForm: React.FC<SegmentFormProps> = ({ onNewSegment }) => {
           id="startX1"
           name="x"
           type="number"
-          min="-20"
-          max="20"
+          min="-10"
+          max="10"
           value={segment1.start.x}
           onChange={(e) =>
             handleSegmentChange(e, segment1, setSegment1, 'start')
@@ -87,8 +87,8 @@ export const SegmentForm: React.FC<SegmentFormProps> = ({ onNewSegment }) => {
           id="startY1"
           name="y"
           type="number"
-          min="-20"
-          max="20"
+          min="-10"
+          max="10"
           value={segment1.start.y}
           onChange={(e) =>
             handleSegmentChange(e, segment1, setSegment1, 'start')
@@ -99,8 +99,8 @@ export const SegmentForm: React.FC<SegmentFormProps> = ({ onNewSegment }) => {
           id="endX1"
           name="x"
           type="number"
-          min="-20"
-          max="20"
+          min="-10"
+          max="10"
           value={segment1.end.x}
           onChange={(e) => handleSegmentChange(e, segment1, setSegment1, 'end')}
         />
@@ -109,8 +109,8 @@ export const SegmentForm: React.FC<SegmentFormProps> = ({ onNewSegment }) => {
           id="endY1"
           name="y"
           type="number"
-          min="-20"
-          max="20"
+          min="-10"
+          max="10"
           value={segment1.end.y}
           onChange={(e) => handleSegmentChange(e, segment1, setSegment1, 'end')}
         />
@@ -123,8 +123,8 @@ export const SegmentForm: React.FC<SegmentFormProps> = ({ onNewSegment }) => {
           id="startX2"
           name="x"
           type="number"
-          min="-20"
-          max="20"
+          min="-10"
+          max="10"
           value={segment2.start.x}
           onChange={(e) =>
             handleSegmentChange(e, segment2, setSegment2, 'start')
@@ -135,8 +135,8 @@ export const SegmentForm: React.FC<SegmentFormProps> = ({ onNewSegment }) => {
           id="startY2"
           name="y"
           type="number"
-          min="-20"
-          max="20"
+          min="-10"
+          max="10"
           value={segment2.start.y}
           onChange={(e) =>
             handleSegmentChange(e, segment2, setSegment2, 'start')
@@ -147,8 +147,8 @@ export const SegmentForm: React.FC<SegmentFormProps> = ({ onNewSegment }) => {
           id="endX2"
           name="x"
           type="number"
-          min="-20"
-          max="20"
+          min="-10"
+          max="10"
           value={segment2.end.x}
           onChange={(e) => handleSegmentChange(e, segment2, setSegment2, 'end')}
         />
@@ -157,8 +157,8 @@ export const SegmentForm: React.FC<SegmentFormProps> = ({ onNewSegment }) => {
           id="endY2"
           name="y"
           type="number"
-          min="-20"
-          max="20"
+          min="-10"
+          max="10"
           value={segment2.end.y}
           onChange={(e) => handleSegmentChange(e, segment2, setSegment2, 'end')}
         />
